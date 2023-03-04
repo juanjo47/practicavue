@@ -12,6 +12,11 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="components/foot.js"></script>
+    <script src="components/menu.js"></script>
+    <script src="components/producto.js"></script>
+    <script src="components/card.js"></script>
         <style>
             .color-box {
                 width: 40px;
@@ -70,49 +75,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" :href="menu1.url1">{{ menu1.etiqueta1 }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" :href="menu2.url2">{{ menu2.etiqueta2 }}</a>
-                    </li>
-                </ul>
+                <menu-s></menu-s>
             </div>
         </div>
     </nav>
     </div>
 
     <div class="container" id="productos1">
-
-        <div class="row">
-            <h3>{{ nombre }}</h3>
-        </div>
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 ">
-                <img :src="imagen"
-                    alt="" width="100%">
-            </div>
-            <div class="col-12 col-sm-6  col-md-8">
-                <h6> {{ descripcion }} </h6>
-                <div class="p-3 mb-2 text-white" style="background-color: gray;">
-                    {{ precio }}
-                </div>
-                <h5>Color</h5>
-                <div class="row">
-                    <div class="color-box clic " v-for="c in colores" :style="{background:c}"></div>
-                </div>
-                </div>
-                <h5>Cantidad</h5>
-                <div class="quantity">
-                    <button>-</button> <div>1</div> <button>+</button>
-                </div>
-                <div class="buy-box">
-                    <button type="button" class="btn btn-primary">Comprar</button>
-                </div>
-                
-            </div>
-        </div>
+        <produc-t></produc-t>
+       
     </div>
 
 
@@ -123,68 +94,20 @@
             <h4>Productos relacionados</h4>
         </div>
         <div class="row">
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <img src="https://ae01.alicdn.com/kf/S00eb0e55c14f47e2bbf828a92ecd5515U/S6S-Mini-GPS-Drones-150g-Drone-4K-Profesional-HD-Dual-Camera-5G-WIFI-FPV-Brushless-Folding.jpg_Q90.jpg_.webp"
-                    alt="" width="100%">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                            <div class="producto-relacionado-precio" :style="precioEstilos">Precio:1000 BOB</div>
-                        <div>
-                <div>
-                    <div class="color-box" style="background: red"></div>
-                    <div class="color-box" style="background: blue"></div>
-                    <div class="color-box" style="background: black"></div>
-                </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="productos2" class="col">
+                <card-ent :cnombre="nombre" :cdescripcion="descripcion" :cprecio="precio" :cimagen="imagen" :ccolores="colores"></card-ent>
             </div>
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <img src="https://ae01.alicdn.com/kf/S00eb0e55c14f47e2bbf828a92ecd5515U/S6S-Mini-GPS-Drones-150g-Drone-4K-Profesional-HD-Dual-Camera-5G-WIFI-FPV-Brushless-Folding.jpg_Q90.jpg_.webp"
-                    alt="" width="100%">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                            <div class="producto-relacionado-precio" :style="precioEstilos">Precio:1000 BOB</div>
-                        <div>
-                <div>
-                    <div class="color-box" style="background: red"></div>
-                    <div class="color-box" style="background: blue"></div>
-                    <div class="color-box" style="background: black"></div>
-                </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="productos3" class="col">
+                <card-ent :cnombre="nombre" :cdescripcion="descripcion" :cprecio="precio" :cimagen="imagen" :ccolores="colores"></card-ent>
             </div>
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <img src="https://ae01.alicdn.com/kf/S00eb0e55c14f47e2bbf828a92ecd5515U/S6S-Mini-GPS-Drones-150g-Drone-4K-Profesional-HD-Dual-Camera-5G-WIFI-FPV-Brushless-Folding.jpg_Q90.jpg_.webp"
-                    alt="" width="100%">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                            <div class="producto-relacionado-precio" :style="precioEstilos">Precio:1000 BOB</div>
-                        <div>
-                <div>
-                    <div class="color-box" style="background: red"></div>
-                    <div class="color-box" style="background: blue"></div>
-                    <div class="color-box" style="background: black"></div>
-                </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="productos4" class="col">
+                <card-ent :cnombre="nombre" :cdescripcion="descripcion" :cprecio="precio" :cimagen="imagen" :ccolores="colores"></card-ent>
             </div>
         </div>
     </div>
-    <footer id="footer1" :style="footerColor">
-        
-    </footer>
+    <div id="foot">
+        <foot-er></foot-er>
+    </div>
 
     <script>
         var configuracionPagina = new Vue({
@@ -193,47 +116,91 @@
                 marca: "MegaDron",
                 menuColor: {
                     backgroundColor: "lightblue"
-                },
-                menu1:{
-                    etiqueta1: "Inicio",
-                    url1: "?"
-                },
-                menu2:{
-                    etiqueta2: "Tienda",
-                    url2: "?"
-                },      
+                },  
             }
         })
         var foter = new Vue({
-            el: '#footer1',
-            data: {
-                tex: "a",
-                footerColor: {
-                    backgroundColor: "slategrey"
-                },
-            }
-        })
-        var precios = new Vue({
-            el: '#bodyes',
-            data:{
-                precioEstilos: {
-                    background: "orangered",
-                    color: "white",
-                    'font-weight': "bold",
-                    'text-align': "center",
-                    padding: "10px",
-                }
-            },
+            el: '#foot'
         })
         var prod = new Vue({
             el: '#productos1',
+        })
+        var prod = new Vue({
+            el: '#productos2',
             data:{
-                id:1,
-                imagen: "https://ae01.alicdn.com/kf/Sc3cc58f2a441419f970cc01f9e5358fbw/Dron-LU3-MAX-GPS-8K-HD-profesional-con-c-mara-Dual-card-n-autoestabilizador-Motor-sin.jpg_Q90.jpg_.webp",
-                nombre: "Dron LU3 MAX GPS 8K HD",
-                descripcion: "Dron LU3 MAX GPS 8K HD profesional con cámara Dual cardán autoestabilizador, Motor sin escobillas para evitar obstáculos, cuadricóptero plegable",
-                precio:"620",
-                colores: ["red", "blue", "black", "yellow"]
+                id:"", imagen:"" , nombre:"", descripcion:"", precio:"", colores: [],
+                upHere: false
+            },
+            methods: {
+                getdata(){
+                    axios
+                    .get('http://localhost:5000/products')
+                    .then(response => {
+                        console.log(response.data);
+                        d = response.data[0];
+                        this.id = d.id;
+                        this.nombre = d.nombre;
+                        this.descripcion = d.descripcion;
+                        this.precio = d.precio;
+                        this.colores = d.colores;
+                    })
+                    .catch(e => console.log(e));
+                }
+            },
+            mounted() {
+                this.getdata();
+            },
+        })
+        var prod = new Vue({
+            el: '#productos3',
+            data:{
+                id:"", imagen:"" , nombre:"", descripcion:"", precio:"", colores: [],
+                upHere: false
+            },
+            methods: {
+                getdata(){
+                    axios
+                    .get('http://localhost:5000/products')
+                    .then(response => {
+                        console.log(response.data);
+                        d = response.data[1];
+                        this.id = d.id;
+                        this.nombre = d.nombre;
+                        this.descripcion = d.descripcion;
+                        this.precio = d.precio;
+                        this.colores = d.colores;
+                    })
+                    .catch(e => console.log(e));
+                }
+            },
+            mounted() {
+                this.getdata();
+            },
+        })
+        var prod = new Vue({
+            el: '#productos4',
+            data:{
+                id:"", imagen:"" , nombre:"", descripcion:"", precio:"", colores: [],
+                upHere: false
+            },
+            methods: {
+                getdata(){
+                    axios
+                    .get('http://localhost:5000/products')
+                    .then(response => {
+                        console.log(response.data);
+                        d = response.data[2];
+                        this.id = d.id;
+                        this.nombre = d.nombre;
+                        this.descripcion = d.descripcion;
+                        this.precio = d.precio;
+                        this.colores = d.colores;
+                    })
+                    .catch(e => console.log(e));
+                }
+            },
+            mounted() {
+                this.getdata();
             },
         })
     </script>
