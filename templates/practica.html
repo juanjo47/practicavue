@@ -126,31 +126,34 @@
             el: '#productos1',
         })
         var prod = new Vue({
-            el: '#productos2',
-            data:{
-                id:"", imagen:"" , nombre:"", descripcion:"", precio:"", colores: [],
-                upHere: false
-            },
-            methods: {
-                getdata(){
-                    axios
-                    .get('http://localhost:5000/products')
-                    .then(response => {
-                        console.log(response.data);
-                        d = response.data[0];
-                        this.id = d.id;
-                        this.nombre = d.nombre;
-                        this.descripcion = d.descripcion;
-                        this.precio = d.precio;
-                        this.colores = d.colores;
-                    })
-                    .catch(e => console.log(e));
-                }
-            },
-            mounted() {
-                this.getdata();
-            },
-        })
+    el: '#productos2',
+    data:{
+        id:"", imagen:"" , nombre:"", descripcion:"", precio:"", colores: [],
+        upHere: false
+    },
+    methods: {
+        getdata(){
+            axios
+            .get('http://localhost:5000/products')
+            .then(response => {
+                console.log(response.data);
+                d = response.data[0];
+                this.id = d.id;
+                this.nombre = d.nombre;
+                this.descripcion = d.descripcion;
+                this.precio = d.precio;
+                this.colores = d.colores;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    },
+    created(){
+        this.getdata();
+    }
+})
+
         var prod = new Vue({
             el: '#productos3',
             data:{
